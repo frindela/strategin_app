@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+    <link rel="stylesheet" href="/style.css">
+    <title>Liste</title>
+</head>
+<body>
+    <h1>Liste des utilisateurs</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody id="utilisateurs">
+      </tbody>
+    </table>
+    
+    <script>
+      fetch('/users')
+        .then(response => response.json())
+        .then(data => {
+          const userList = document.getElementById('utilisateurs');
+          data.forEach(email => {
+            const row = userList.insertRow();
+            const cell = row.insertCell();
+            cell.textContent = email;
+          });
+        })
+    </script>
+</body>
+</html>
